@@ -1,0 +1,5 @@
+<%= form_for(@gallery, remote:true, html: {class: "crop_form"}) do |f| %>
+  <%= f.cropbox :photo %>
+  <%= f.crop_preview :photo %>
+  <%= f.submit 'Save' %>
+<% end %>
