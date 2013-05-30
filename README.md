@@ -4,6 +4,6 @@ just a simple app i created, feel free to fork it.
 
 to run it:
 
-<code> cd PROJECT_DIRECTORY </code>
-<code> cd bundle install </code>
+<code> cd PROJECT_DIRECTORY </code> </br>
+<code> cd bundle install </code></br>
 <code> cd rails s </code>
