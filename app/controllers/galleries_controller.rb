@@ -41,7 +41,8 @@ class GalleriesController < ApplicationController
   # POST /galleries
   # POST /galleries.json
   def create
-    @gallery = Gallery.create(params[:gallery])
+    @gallery = Gallery.new(gallery_params)
+    @gallery.save
     respond_to do |format|
       format.js {render "new"}
     end
@@ -63,7 +64,7 @@ class GalleriesController < ApplicationController
   def update
     @gallery = Gallery.find(params[:id])
     respond_to do |format|
-      if @gallery.update_attributes(params[:gallery])
+      if @gallery.update_attributes(gallery_params)
         format.js {render "crop"}
         format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
         format.json { head :no_content }
@@ -88,5 +89,11 @@ class GalleriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private
 
+  def gallery_params
+    params.require(:gallery).permit(:name, :photo, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at, :photo_original_w, :photo_original_h, :photo_box_w, :photo_crop_x, :photo_crop_y, :photo_crop_w, :photo_crop_h, :photo_aspect)
+    # params.require(:gallery).permit(Gallery.fields.keys)
+  end
 end
